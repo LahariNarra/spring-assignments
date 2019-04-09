@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	
+		
+	<bean id = "details" class = "com.capgemini.spring.organization.Organization">
+        <constructor-arg index = "0" value = "101" type="int"/>
+        <constructor-arg index = "1" value = "KLM" type="String"/>
+        <constructor-arg index = "2" value = "250000" type="double"/>
+	<constructor-arg index = "3" ref = "addressDetails"/>
+	<constructor-arg index = "4">
+		<list>
+			<value>Lahari</value>
+			<value>Mukhesh</value>
+			<value>Karthik</value>
+			<value>Nandini</value>
+		</list>
+	</constructor-arg>
+	<constructor-arg index = "5">
+		<set>
+			<value>Developing</value>
+			<value>Testing</value>
+			<value>Analysing</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg index = "6">
+		<map>
+			<entry key = "Developing" value = "John"/>
+			<entry key = "Testing" value = "Mary"/>
+			<entry key = "Analysing" value = "Alex"/>
+		</map>
+	</constructor-arg>
+	<constructor-arg index = "7" ref="ip"/>
+	<constructor-arg index = "8" ref="database"/>
+	
+    	</bean>
+	
+
+	<util:properties id="ip" location="ip.properties"/>
+	<util:properties id="database" location="dbconfig.properties"/>
+	<bean id = "addressDetails" class = "com.capgemini.spring.organization.Address">
+		<constructor-arg index = "0" value = "501e" type="String"/>
+        	<constructor-arg index = "1" value = "Vidyuth Nagar" type="String"/>
+        	<constructor-arg index = "2" value = "Hyderabad" type="String"/>
+		<constructor-arg index = "3" value = "Telegana" type="String"/>
+       		<constructor-arg index = "4" value = "500060" type="int"/>
+        </bean>
+</beans>
