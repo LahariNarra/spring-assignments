@@ -12,7 +12,7 @@ public class ValidateAspect{
 	/*@Before("execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.addition(..))")
 	public void valid(){
 		System.out.println("In Aspect");
-	}*/
+	}
 
 	@Around("execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.addition(..))")
 	public void validateAdd(ProceedingJoinPoint pjp) throws Throwable{
@@ -40,9 +40,22 @@ public class ValidateAspect{
 			System.out.println("Number cannot be less zero");				
 	}
 
-	/*@After("execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.addition(..))")
+	@After("execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.addition(..))")
 	public void valid(){
 		System.out.println("In Aspect");
-	}*/	
+	}*/
+
+	
+	@AfterThrowing(pointcut = "execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.division(..))",throwing = "error")
+	public void validateDivision(JoinPoint jp, Throwable error){
+		System.out.println("Method" +jp.getSignature());
+		System.out.println("Exception" +error);
+	}
+
+	@AfterThrowing(pointcut = "execution (* com.capgemini.spring.calculator.impl.CalculatorImpl.addition(..))",throwing = "error")
+	public void validateAddition(JoinPoint jp, Throwable error){
+		System.out.println("Method" +jp.getSignature());
+		System.out.println("Exception" +error);
+	}	
 	
 }
